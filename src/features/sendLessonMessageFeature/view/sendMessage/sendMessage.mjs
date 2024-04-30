@@ -16,8 +16,8 @@ export const sendMessage = async ({ chatId, token = botToken }) => {
 
         const keyboard = createKeyboard(buttons);
         const url = `https://api.telegram.org/bot${token}/sendMessage`;
-        await axios.post(url, {
-            chat_id: chatId,
+        return await axios.post(url, {
+            chat_id: '',
             text: lessonsMessage(),
             reply_markup: keyboard
         });

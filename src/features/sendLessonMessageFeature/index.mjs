@@ -20,6 +20,8 @@ export const sendLessonFeature = async () => {
 
         for(const lesson of lessons) {
             const { studentId: chatId, timestamp } = lesson;
+
+            console.log(typeof chatId, typeof timestamp)
             const alertDate = DateTime.fromMillis(timestamp).minus(CURRENT_SINGLE_DELAY);
             const timeout = alertDate - currentTime;
             const isTimeoutIncorrect = timeout <= 0;
@@ -27,13 +29,17 @@ export const sendLessonFeature = async () => {
             if(isTimeoutIncorrect) {
                 logger.log({
                     level: 'error',
-                    message: `sendLessonFeature: incorrect alert date.`
+                    message: `sendLessonFeature: incorrect alert date: ${timeout}. Continuing...`
                 });
                 continue;
             }
 
-            setTimeout(() => {
-                sendMessage({ chatId })
+            setTimeout(async () => {
+                const { result, statusText } = await sendMessage({ chatId });
+                logger.log({
+                    level: 'error',
+                    message: `sendLessonFeature: message sent to ${chatId}. Status: ${result}, ${statusText}.`
+                });
             }, timeout);
         }
     } catch (err) {

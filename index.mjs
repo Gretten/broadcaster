@@ -18,7 +18,7 @@ schedule(MORNING_SCHEDULER_TIME, async () => {
     console.log('The application has started for the first time.');
     logger.log({
         level: 'info',
-        message: 'First start.',
+        message: 'First start...',
     })
 })();
 

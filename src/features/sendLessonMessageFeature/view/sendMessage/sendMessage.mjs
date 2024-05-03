@@ -5,6 +5,7 @@ import {buttons} from "../../model/constants/constants.mjs";
 import {botToken} from '../../../../../settings.mjs'
 
 export const sendMessage = async ({ chatId, token = botToken }) => {
+    console.log(chatId)
     if(!chatId) {
         logger.log({
             level: 'error',
@@ -17,7 +18,7 @@ export const sendMessage = async ({ chatId, token = botToken }) => {
         const keyboard = createKeyboard(buttons);
         const url = `https://api.telegram.org/bot${token}/sendMessage`;
         axios.post(url, {
-            chat_id: '',
+            chat_id: chatId,
             text: lessonsMessage(),
             reply_markup: keyboard
         });

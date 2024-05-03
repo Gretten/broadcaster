@@ -35,10 +35,10 @@ export const sendLessonFeature = async () => {
             }
 
             setTimeout(async () => {
-                const { result, statusText } = await sendMessage({ chatId });
+                await sendMessage({ chatId });
                 logger.log({
                     level: 'error',
-                    message: `sendLessonFeature: message sent to ${chatId}. Status: ${result}, ${statusText}.`
+                    message: `sendLessonFeature: message sent to ${chatId}.`
                 });
             }, timeout);
         }

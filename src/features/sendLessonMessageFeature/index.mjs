@@ -9,7 +9,6 @@ export const sendLessonFeature = async () => {
     try {
         const currentTime = DateTime.local().toMillis();
         const lessons = await getLessons(currentDay);
-
         if(!lessons) {
             logger.log({
                 level: 'error',
@@ -17,6 +16,11 @@ export const sendLessonFeature = async () => {
             });
             return null;
         }
+
+        logger.log({
+            level: 'error',
+            message: `getTodayLessons: lessons found for ${currentDay}`,
+        });
 
         for(const lesson of lessons) {
             const { studentId: chatId, timestamp } = lesson;

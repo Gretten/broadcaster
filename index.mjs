@@ -11,11 +11,15 @@ global.logger = logger;
 
 schedule(MORNING_SCHEDULER_TIME, async () => {
     await sendLessonFeature();
+    logger.log({
+        level: 'info',
+        message: 'Morning start...',
+    })
+
 });
 
 (async () => {
     await sendLessonFeature();
-    console.log('The application has started for the first time.');
     logger.log({
         level: 'info',
         message: 'First start...',

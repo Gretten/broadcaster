@@ -26,3 +26,18 @@ schedule(MORNING_SCHEDULER_TIME, async () => {
     })
 })();
 
+process.on('uncaughtException', (err) => {
+    logger.log({
+        level: 'error',
+        message: `Uncaught exception: ${err.message}`,
+    })
+    return null;
+});
+
+process.on('unhandledRejection', (reason) => {
+    logger.log({
+        level: 'error',
+        message: `Unhandled promise rejection: ${reason}`,
+    })
+    return null;
+});

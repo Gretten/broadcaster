@@ -27,4 +27,4 @@ export const CURRENT_SINGLE_DELAY = delayOptions['oneHour'];
 /**
  * Scheduler time
  */
-export const MORNING_SCHEDULER_TIME = '0 6 * * 1-7';
+export const MORNING_SCHEDULER_TIME = '0 6 * * *';

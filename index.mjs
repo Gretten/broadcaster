@@ -10,20 +10,19 @@ Settings.defaultZone = timezoneConfig || 'Europe/Moscow';
 global.logger = logger;
 
 schedule(MORNING_SCHEDULER_TIME, async () => {
-    await sendLessonFeature();
     logger.log({
         level: 'info',
         message: 'Morning start...',
     })
-
+    await sendLessonFeature();
 });
 
 (async () => {
-    await sendLessonFeature();
     logger.log({
         level: 'info',
         message: 'First start...',
-    })
+    });
+    await sendLessonFeature();
 })();
 
 process.on('uncaughtException', (err) => {
